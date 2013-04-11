@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>jQuery.texts() DEMO</title>
+<link rel="stylesheet" type="text/css" media="screen,print" href="default.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../jquery.texts.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+	$(".mojiretsu").texts();
+});
+</script>
+</head>
+<body>
+<p class='mojiretsu'>てすとてすと<br/>てすとてすと</p>
+<p class='mojiretsu'>ほげほげほげほげほげ<br/>ほげ</p>
+<p class="mojiretsu">ふがふがふがふがふがふが</p>
+<p class="mojiretsu">
+    てすとにゃー<a href="#">test</a>
+    <strong>ぐおわし！</strong>ふみゃー<br/>
+    なんということでしょう。<br/>
+    <b>て す と な の よ</b>←文字の間に空白入ってる？<br/>
+    <select><option>テスト１</option><option>テスト２</option></select>
+    なのの<button>
+    ボタンテスト
+    </button>
+    <textarea>テキストエリアのテスト
+てすてすてす……。</textarea>
+</p>
+<p class="mojiretsu">
+    &lt;strong&gt;太字になったらあかんよ？&lt;/strong&gt;(タグ文字テスト)
+</p>
+</body>
+</html>
