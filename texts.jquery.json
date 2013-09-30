@@ -1,0 +1,35 @@
+{
+    "name": "texts",
+    "title": "jQuery.texts",
+    "description": "jQuery.fn.texts is get unicode character wrap span.",
+    "keywords": [
+        "unicode",
+        "textNode",
+        "nodeType"
+    ],
+    "version": "1.0.0",
+    "author": {
+        "name": "juner",
+        "url": "https://github.com/juner"
+    },
+    "maintainers": [
+        {
+            "name": "juner",
+            "email": "juner@juner.net",
+            "url": "http://blogger.juner.net"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/MIT"
+        }
+    ],
+    "bugs": "https://github.com/juner/jQuery.texts/issues",
+    "homepage": "https://github.com/juner/jQuery.texts",
+    "docs": "https://github.com/juner/jQuery.texts",
+    "download": "https://github.com/juner/jQuery.texts/archive/master.zip",
+    "dependencies": {
+        "jquery": ">=1.8"
+    }
+}
