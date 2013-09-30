@@ -2,7 +2,7 @@
 ##概要
 要素内のテキストノードを任意のタグで一文字ずつ分離して取得する為のjQuery plugin です。
 ##用法
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="./js/jquery.texts.js"></script>
 で読み込んで一文字ずつ取得したいところで
 
