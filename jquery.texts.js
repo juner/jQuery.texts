@@ -1,5 +1,5 @@
-// forked from juner's ".texts() 1.0 [jQuery plugin]" http://jsdo.it/juner/jQuery_texts
-(function($,undefined){
+(function($,document,undefined){
+    "use strict";
     if($ === undefined){
         throw "not found jQuery";
     }
@@ -8,14 +8,38 @@
      * @param options[className] 設定する一時クラス名(初期値:"char")
      * @param options[tagName] 設定するタグ名(初期値:"span")
      * @param options[excludeTagNames] 除外セレクタ[主に除外するタグ名を指定する](初期値:select,option,textarea)
-     * @param options[reg] 一文字を切り出す為の正規表現オブジェクト(初期値:/([\uD800-\uDBFF][\uDC00-\uDFFF]|[^\B\t\s ])/g)
+     * @param options[splitReg] 抽出用正規表現オブジェクト
+     * @param options[testReg] 囲う一文字を判別する為の正規表現オブジェクト(初期値:/([\uD800-\uDBFF][\uDC00-\uDFFF]|[^\B\t\s ])/g)
      */
     var default_options = {
         className:"char",
         tagName:"span",
         excludeTagNames:["select","option","textarea","ol","ul","dl"],
-        reg : /([\uD800-\uDBFF][\uDC00-\uDFFF]|[^\B\t\s ])/g,
+        splitReg :/([\uD800-\uDBFF][\uDC00-\uDFFF]|.)/g,
+        testReg : /[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\B\t\s ]/,
     };
+    // 古いバージョンの jquery 対策 (1.8以下)
+    var addBack = typeof $.fn.addBack === "function" ? "addBack" : "andSelf";
+    // 公開しない関数
+    var private_methods ={
+        textsTargetElement:function(options){
+            options = options || methods.getOptions();
+            var excludeTagNames = options.excludeTagNames.join(',');
+            return $(this).find("*")[addBack]().not(excludeTagNames);
+        },
+        notZeroLengthTextNode:function(){
+            return $(this).contents().filter(function(){
+                return this.nodeType === 3 && 0<this.nodeValue.length
+            });
+        },
+        cloneElement:function(elm,newText){
+            return $(elm).clone().text((newText || "")).get(0);
+        },
+        newTextNode:function(context){
+            return document.createTextNode(context);
+        },
+    };
+    //公開用関数群
     var methods = {
         getOptions:function(config){
             return $.extend(default_options,config);
@@ -25,17 +49,25 @@
         },
         getTexts:function(elm,options){
             options = options || methods.getOptions();
-            elm.find("*").add(elm).not(options.excludeTagNames.join(',')).contents().each(function(){
-                var text ="";
-                if(this.nodeType===3 && 0<(text =$(this).text()).length)
-                {
-                    text = text.replace(options.reg, "<"+options.tagName+" class='"+options.className+"'>$1</"+options.tagName+">");
-                    var es = $.parseHTML(text);
-                    $(es).insertAfter(this);
+            var tempElem = $.parseHTML("<"+options.tagName+" class='"+options.className+"'></"+options.tagName+">")[0];
+            var $elm = $(elm);
+            $elm = private_methods.textsTargetElement.call($elm,options);
+            $elm = private_methods.notZeroLengthTextNode.call($elm);
+            $elm.each(function(){
+                    var textNode = this;
+                    var text =this.nodeValue;
+                    text.replace(options.splitReg,function(matches,$1,offset,str){
+                        var newNode = ($1 && options.testReg.test($1))
+                            ? private_methods.cloneElement(tempElem,$1)
+                            : private_methods.newTextNode($1);
+                        textNode.parentNode.insertBefore(
+                            newNode,textNode);
+                    });
                     $(this).remove();
-                }
-            });
-            return elm.find(""+options.tagName+"."+options.className+"").removeAttr("class");
+                });
+            return elm
+                .find(""+options.tagName+"."+options.className+"")
+                .removeAttr("class");   
         }
     };
     $.fn.extend({
@@ -46,4 +78,4 @@
     $.extend({
         texts:methods
     });
-})(jQuery);
+})(jQuery,document);
