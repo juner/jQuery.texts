@@ -8,15 +8,37 @@
 <script type="text/javascript" src="../jquery.texts.js"></script>
 <script type="text/javascript">
 jQuery(function($){
+    var $tempPrev = $("<p class='moto' />");
+    $mojiretsu = $(".mojiretsu");
+    $mojiretsu.each(function(){
+        $(this).before(
+            $tempPrev.clone()
+                .append($(this).contents().clone())
+        );
+    });
 	$(".mojiretsu").texts();
 });
 </script>
 </head>
 <body>
-<p class='mojiretsu'>てすとてすと<br/>てすとてすと</p>
-<p class='mojiretsu'>ほげほげほげほげほげ<br/>ほげ</p>
-<p class="mojiretsu">ふがふがふがふがふがふが</p>
-<p class="mojiretsu">
+    <h1>jQuery.texts() DEMO</h1>
+    <h2>文字列テスト</h2>
+    <p class='mojiretsu'>
+        あいうえお<br/>
+        かきくけこ<br/>
+        さしすせそ<br/>
+        たちつてと<br/>
+        なにぬねの<br/>
+        はひふへほ<br/>
+        まみむめも<br/>
+        やゐゆゑよ<br/>
+        らりるれろ</p>
+    <h2>対象外確認</h2>
+    <p class="mojiretsu">
+        abc defg 
+    </p>
+    <h2>要素の混入</h2>
+    <p class="mojiretsu">
     てすとにゃー<a href="#">test</a>
     <strong>ぐおわし！</strong>ふみゃー<br/>
     なんということでしょう。<br/>
@@ -27,9 +49,12 @@ jQuery(function($){
     </button>
     <textarea>テキストエリアのテスト
 てすてすてす……。</textarea>
-</p>
-<p class="mojiretsu">
-    &lt;strong&gt;太字になったらあかんよ？&lt;/strong&gt;(タグ文字テスト)
-</p>
+    </p>
+    <h2>サロゲートペア</h2>
+    <p class="mojiretsu">𠮷𩸽🌷🐱🆒🌏🐩</p>
+    <h2>実体参照によるタグ</h2>
+    <p class="mojiretsu">&lt;strong&gt;太字になったらあかんよ？&lt;/strong&gt;</p>
+    <h2>合成文字(ブラウザに任せて対応しない)</h2>
+    <p class="mojiretsu"> A&#x20DD;秘&#x20E3;カ゚キ゚ク゚ケ゚コ゚ツ゚ト゚サ゚シ゚セ゚ソ゚イ゚ロ゚ニ゚ト゚チ゚リ゚ヌ゚ル゚ヲ゚ワ゚カ゚ヨ゚タ゚レ゚ソ゚ツ゚ネ゚子゚ナ゚ラ゚ム゚ウ゚井゚ノ゚オ゚ク゚ヤ゚マ゚ケ゚コ゚エ゚テ゚ア゚サ゚キ゚ユ゚メ゚ミ゚シ゚ヱ゚モ゚セ゚ス゚ン゚</p>
 </body>
 </html>

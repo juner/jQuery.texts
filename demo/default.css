@@ -3,14 +3,55 @@
   padding: 0;
   border: 0;
 }
-
 body {
-  background: #ddf;
+  background: gray;
   font: 30px sans-serif;
+}
+h1{
+    font-size:1.3em;
+    text-align:center;
+    background-color:silver;
+    color:black;
+}
+h2{
+    font-size:1.2em;
+    color:yellow;
+    margin-top:1em;
+    margin-bottom:-1em;
+}
+.moto{
+    margin-top:1em;
+}
+.moto::before,
+.mojiretsu::before{
+    width:9ex;
+    color:white;
+    font-weight:bolder;
+    float:left;
+    margin-left:-10ex;
+    text-align:right;
+}
+.moto,
+.mojiretsu{
+    padding-left:10ex;
+    padding-top:0.2em;
+    padding-bottom:0.2em;
+}
+.moto::before{
+    content:'before : ';
+}
+.mojiretsu::before{
+    content:'after : ';
+}
+.mojiretsu{
+    margin-bottom:1em;
 }
 .mojiretsu span{
     color:green;
 }
 .mojiretus span span{
     color:red;
+}
+.result{
+    color:yellow;
 }

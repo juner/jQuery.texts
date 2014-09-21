@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>jQuery.texts() DEMO</title>
+<link rel="stylesheet" type="text/css" media="screen,print" href="default.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../jquery.texts.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+    var $performanceTest = $(".performance-test");
+    var length = $performanceTest.text().length;
+    var startTime = new Date().getTime();
+    $performanceTest.texts();
+    var endTime = new Date().getTime();
+    var status = endTime - startTime;
+    $("h1").eq(0).after($("<div class='result' />").text(status+" ms"+" / "+length + " chars"));
+});
+</script>
+</head>
+<body>
+<h1>jQuery.texts() PERFORMANCE TEST</h1>
+    <p class="performance-test">uCa2Gj6whys9Nith9JPyfaC2F6Mm4RCyix98UNAfVHJ6mRDcCn8smaXnFjy7BfwyXy2zaWmRVkP73xNT3JKSPEkXJWxBUDgTKzd_</p>
+    <p class="performance-test">WD7MrVMLy_y_FeabZmutRnrsi2MxerL_J3fKWyJ3WeN75kn68MReJsFef4EAg5M6iUWmGd6PcHnBAHsVD8fdB_3N2efbxuX9X2QZ</p>
+    <p class="performance-test">H7rSUUKBPV_6P4mcNi6VtLRHtdce6Dzmt74KF_cbNYt2dAfKuzEzsMPidD9scnAKfEZYJiQiTrFXJrcYUP8gMppgxwRZmdaQ7Q9h</p>
+    <p class="performance-test">tYK9tCmJV6zdWnNfZgyzsEsUCu2XnLAgLzQmxKjVjWHEauYFUtRMyP558mUj88XKne65KHYf9_aibcdiFd33ArpSkk8kR3gHpMef</p>
+    <p class="performance-test">EZUsjMQLu6d3P_uHETPpV4S2a9CetRckhgX2QwbCwc24F2V_5wZ8iYisW28GWBA_W8mKBzRUkEzbPTCCu2b7mRRD8HgLkG3Fcbp6</p>
+    <p class="performance-test">Zt4uFDW7XkxHKTYRRKGYeCc9jrTDmP7eaNfLZXPdLFTj5ZwApDYgzG8WWpsGZYx7sG96BbfVa2UaZas5U7buKGcyBjztMAaNTF77</p>
+    <p class="performance-test">C9iaEXRrCem63cNVkThpdeT8QcJfQVDKuWxBTG7iuLHcgzu_WR8hdXrUU95uL3ck5CmXtGRPWgdpgzyuDMkir3R4gVMyRbBpRaKW</p>
+    <p class="performance-test">X9BZ4rcWiRKYyBctYHYWy4yj4J9dHa7A6CbNTmYUr2z7QSS3hBZjXmniPdfw5QRMaF2eHa5fBjM4aygtMfZZUxHLiY2DpwnAJJpe</p>
+    <p class="performance-test">6wXBrWfwd_a7KsasG4W5p2HW_VhxfKeG_fnV5Qucma6jYkhSsCpBTgKNZFfHmaX6Uy8KAwXTuMCDGwXtHUuwFJysAm5YYTzViwiT</p>
+    <p class="performance-test">pntXWz45TETLFyYbihuRGanQFd4WNDtxxLeLEYNFeeemjP2KgS99CZJpyX6zfQVeyCVrpsjds45LmiWQybmg9ZScRAM8HWN3sXtg</p>
+    <p class="performance-test">ck_2V8fwKnUT5ETcLPQTinHbf6Emw4QVRFXSb9as7DfrJ7t6n3bQ_UpQRxyrx7zKzkWbn4DpXWMRMAN9pxKNM3QKe8M_uUfjTEjy</p>
+    <p class="performance-test">BViPKVGkUVWJcMHagEaAKz5wyRXbDT9KejVNgFrh4njPVijEzVR2j4iGbY9b2hXQnNpjzPmHtfyHM8Y8c3UYmL3jYtYzQkZE7MdP</p>
+    <p class="performance-test">Kd74KcudJUjcZApCPQ52mU4C36mUtMuukHMA5NjbrED8fnjAN3_g8dfQ8Sta3Y9AXrZtnQ6cPNBNKfmU85SiJwmNYiuiHXecRzMQ</p>
+    <p class="performance-test">QGDUPTsFmHmbLr7_w2AwxEaN6YXVcg2m2tuszKQKDPCsk5eeQAMwYSTihhSZpb4XEjbma5AZEiJdQkHNH2SmFPtxc8ZsHaMY5ydR</p>
+    <p class="performance-test">yEwjYsnuR9asGNL4ERH2dy5S2uJfUyGeZX6W_7LxyVkFaVrwMgHhj7rMbnRcNVh3Qt2STWKRY_cu4UCgAMy_WrmTk4ccgxr5P5Le</p>
+    <p class="performance-test">YEG9WJNVx_zrL5YSJm42HThfD_jasz5QW6gZmmJSrcy6_XDXnfHJk_n9XCj9hZaUsPNLiEYzUzdGEBTGyKACGcrm6gh26akDaici</p>
+    <p class="performance-test">gtyu8d3QuXrbdA_zNLY9WZ5KF6TTNCaXccfWM49ygACdNa3ifRLNDAbb5ftibEuQ6NG6uCznMyeCi55feW8ePBzt_m55R6y2GSVu</p>
+    <p class="performance-test">RRZX9RjpnYktPCf_4KhKxt7DAPkRi6ydArs9RJeAsVhMkshPsuH3WFdr_MmRKJJCcJZPwENuu4usKsYWXhmWWnkpCJ5_J76hVzZk</p>
+    <p class="performance-test">S6JUhdPF8Et_hfi5b2fwc8cd8u24SzEsX49T7AkzCnDhuaijQ_w4_5ViyLxWFjURpnrZHKraJCpwKXijwhN23ik_jCMcnaLkUK2A</p>
+    <p class="performance-test">ZSsXrTJ6kFY6F_RjQhnfjr3xNCVMKnwd7MWditn9GSdcjbCTVjGGSM_VTuK9zQWuLnpY8_L79ubp96UCrLN9DwS7PTJNhYgAizmT</p>
+    <p class="performance-test">m35NsYReXdznBeMMFx_tbE6Q6eUj9b5zu4LEKbbsEbPWB6PhdaJuxH3pypAttEyXYEwhYkcdxfszkGeAUcwLhQ8iY5bCHwr88ZZk</p>
+    <p class="performance-test">bQ_jWRYMKUFLswcx6t7yW3_XfCSWCmFy9XQbp8wWLJsPYcVM9T84JhuKGyguQd48EM4t8iXJbKfEQKLMjgftdZt4t7n83g4zrF9Z</p>
+    <p class="performance-test">NtLugTcxLfziptu8JPdG4CPe8jYtDWF3UHKDG9H9WRChsdTSZrDkAZ9Xs8sXPt_SuYTLxn536eB3TninrxdJRAw_5VV4C53Q2j2S</p>
+    <p class="performance-test">TaZwzkcPEHucrHAXUVCK2_dDU3ws3JgjhLz6w7iuNa_7LWtfVfj3fHLsGpUhUcUXuZ8n2iHWjg8kh6CAJXDutgACirCQ7QiCmzRp</p>
+    
+    <p class="performance-test">gUdMzP3sJPfkCxcDiCb_DEGSPPRgeRatNMPUst7rkz_QMGm74sebic792mPz_sDjCrycJXHKi5zXZ9E4ctXXaXutR7RguaVbu_Qh</p>
+    <p class="performance-test">W4MTHRAZ2fEHKbktHyC3zzX4KybKbNLda7atP7yR_mE_ezjhwpngyPJEE4yYNb5fKtLXJQBRB6tkEAyNYQDMa3bgeNNjThLGBiwX</p>
+    <p class="performance-test">UcxxRmYm4JWgYG9SAZUWnQypYTeHHxibZ8DH5mVSLgkVFrPhdFDnjWh3MMVf7TQWDdXyiauJTyEwdNUtEKhnC86VuUu3YjZhDSAV</p>
+    <p class="performance-test">Sd5ZMWSV3DkJEhxt2t4JjQzfhyAG7DVUpKQ4cVYtmnkrQesZUSsAN4cUCyujPRJp8PpQmRBQUYNVG45JCVV96GDumG27HCzWVirz</p>
+    <p class="performance-test">xHp4x45aT7WMdPK8x9EjkHR3wN6DuRhpBJx5TKRz7znVdpJa8ZFyEZ5jxC4df5BCmMkfzU387J5mSaUpRZc9K4RjA5NAxkRDBTEy</p>
+    <p class="performance-test">DEJ9rMW39tRei8YdbdetZ5EQeRXHHf2p7yu4bfLTzyWT7PsimrBrYmNf5CUpuDtHAYwACMVeC263rs6kPj2sLe2SbpbJm2DbSb6z</p>
+    <p class="performance-test">zxJTU2trBG4aAtwDjVUj6prZBPUWQHXJSV972HMrFcsDfKcnTCVamFTu3k8p8483HfRK5EmuSnb98ZiXLJZVutYJTKsjd7jkFgZY</p>
+    <p class="performance-test">4s6LngjTETW5dbXrumMy68FApSawYMVbG_QmTu5jnPHCLcsHxdxRAgAsPuLpdfQGg_Maar6BcatA5fJfEU778NS8DYY4yArb2JAQ</p>
+    <p class="performance-test">RzL2GDERE7Up_QxDceeApaygZymx4TVtZLyA_SAn6r_Tmnknm9TzggnkAwQVmfiRURexLaA_XpemSedRGYY6xMXBw8Fpk37UKjFU</p>
+    <p class="performance-test">2A4zrK8G48a9zQY3WKPtMUV7RPBPk4NgFLjziNMpxTakNdL8xHa4uUVgeUKwZbBeVFtd_9drs3ufXwi85VLP3guC6aEK4freRRHc</p>
+    <p class="performance-test">rcKXMf6YTiDtYXxFc8WUkuJuXpLbpf_jWh4kEFZ5HXVV2XHAmWceBPHXUtQnt9XjjJ3spXPHMs_Mh6Qb7sDDFAfXMEk8paBDRnhH</p>
+    <p class="performance-test">5cRhjHVbeD6cf8TN96wRTUkEVFQeZx_U7RK2WkrTFrhKuYKLBX4R2L22hdNRCxzzUUxQEF63UMKdZaLpkCZX6ZrXLfBLZjtUtEez</p>
+    <p class="performance-test">Y_7y8JhHPKWUdXx_jKLPuY9gZY6HHz3jGaAzyVrfrad5FXhj4n2BFguPD5CzayA4etNgXMFZRg5DVkAnDXcP6hnsp6T2bxjj8fV2</p>
+    <p class="performance-test">9_HiYELsAw38terMSyngasi6ydSnRNNBrtarsAKw6emf8tZpNJ39R86QsD4tM6iZneWnNBZ2THJj4KzAEuG9rhicc_p6M9Qjy6_k</p>
+    <p class="performance-test">ae4bbsxDXQt5bwBA5yBQaLjZrF72a6HeeLefznzZBXYUbDmKpQAd9VhRkSgkdLzHDQEW84jKXUEu7mFWVmPXkd6zTYwfifksEc7j</p>
+    <p class="performance-test">xyspjWFUGkyyu9L5Q57xWPusMe6YBz4eD6xExan_mgL965RE8Nneg6FFHZRCc4mPR78QJULBCKVSCaXBM44bSGsumZHQKa7MeK5W</p>
+    <p class="performance-test">Y5T5MuAJUhPrRE_NFHV8maM5craPdcN_6SCChLU4RJJmhtcEACFP8fgGm8REcufF2DeBcRE_ChryuU49MVc7aSQzBVreBCK9Vw9p</p>
+    <p class="performance-test">RPzR9Mbnnw_W88hV3MFEFTxKSH9zuBzPatZiDgU6_3Ga7_YntTeiyWxr4hmE95my7n8WjaDk6GGhN9wnypJGRLQt9u6yjn3Trpbd</p>
+    <p class="performance-test">i9Z_7R6Meu269GHrwx8Q3rwePMifYYzSym8TNSUi6s6Y5dX3UDuHiCFgVGrS2UDYSkmmGyf4n3SXRtreptseJwL4VnVm8ez_yxAi</p>
+    <p class="performance-test">asxfSem3VG8Vja3WbTMjrZMCmu35mmbFM5eUcNcUCBsg_sD3LMjMBZwkGCBDCRTp2QnPQ4mducdrifRKcHWcGGh3QMdNkU2erKcH</p>
+    <p class="performance-test">QBGPuefgeEjD9U66k2dEmNm2DfwDw_kSaQ9pwVHJZAru9K4S_7Bxi9b6gGPSC4TrejUxCeEnTxNwjUBcTz3hPRrRc85pKifJygkK</p>
+    <p class="performance-test">PETr7yWaQ67r947KjRgjBumhrPhQMwD8tdGT5MP8MfNFLYyN8h5AmkpPn_dt9Cg8acKhMu2Mcxk_ikPw4iNRNeV9nwCZVTnwp4aM</p>
+    <p class="performance-test">6FidwpErEFy9GFwRcQPrLWhEhcSTuRMbGZKzDZMArZ_6SPG7RDUL7Rm6tB9apja3gxUy5icfG8saj6ddXRpuU6953V6F46gdiBZP</p>
+    <p class="performance-test">nxu3p4eC58DFSC8z4KWpHfha5sPKYyRnHuJd6d_gyhG3i93bf9_56jCzhFN9EEWLz6MgsjhRLHi5YA5wJc4C4B2uTDsLHNcZM3eB</p>
+    <p class="performance-test">YR778R9iVL3tf3KLZsHyHSP4SuSPW69CFXg983V7wrzSZUWfP6GwLfUrFtdzrajRAzBHWtSr9zAEmxVQEwi7NVFiCPbWsJHQHhXA</p>
+    <p class="performance-test">M5Sfm7y_JEhAj2EPMF_Hst3YuS55yPkU7Ttw6LaMgW2hR6tbHTRM9mJpFULUS9ZABdSwKfbwBgVrcEefcS5jX8xAFH_uz_kQ_ECh</p>
+    <p class="performance-test">VHiUsaRKmzTkEzp68ScFydFzfbsxwiedTfj3dLbGSN6aLNxBJcyeX8FifPURNpRpn5wHLRUD6DT9WPGrf3dzwh2fiGnLSVmysnVG</p>
+    <p class="performance-test">zy7DpzwY7AMRghgJhKwTnxTCBkRyz5nmATY3hewJ54buC62PLdTtCjZMMYwDJdZdm9sMGdhSDiYPUdX5y9DP4yrk7SF9T9mMT8Xr</p>
+    <p class="performance-test">FESU6WWyGnVDMtzYJxxLPzHHkwJph4bTxESYuR5JBQHDwF7NnXFBbuwhtMeKTrQUTSS_fyPVfiUJ_QiJBHXd2ZeKgXJCMKbdjDey</p>
+    <p class="performance-test">MVPWh4H2xEJfxhNSD9ANBxbPDP4z5bW8YpiH5shrDMEJ39C5585TRBMts888YHSu_CaHj_Fr6SFAAgtUSxbwwpW24WZ72_icPewB</p>
+    <p class="performance-test">VTRbnZscjN3FJXwVb8yVQ6BEJ95bxSSe_itcG4zf7TdW8SeYpyn2aSVL4Bhy2zc8_2Zdy8QbtuftzrkVWEKu7mFHBbgy7xc2fh3G</p>
+    <p class="performance-test">42DFHFshNQPjQQaxD3RnR2Y63Hu54gst3QN57nfGRwcg7KsJeEseZAcbBgafuAxbzCgLSgkhUJ2k3bJUitYYGf25y_k7NsVMA7yB</p>
+    <p class="performance-test">jDCcSrP2awLYnU6Tpbj7SeNRmyJsSjL_7kid2XdQTRu3teb9NiUDsZGNxXbi2ME9eimTcpY7D8zsn2Vxy9EkwsCg25K5SSbAmutP</p>
+    <p class="performance-test">dKtcRRkpRfR7_ubLjGuFHyrkSiQ8ZCrWCnAnwyJjKDSszZL8ZMGZTdSkUYNgCzuMDXYne4rEacSPjHfn96iGEaC46WHE4eMKR6Jr</p>
+    <p class="performance-test">hujuFe_DMdZXV7yU8rPt3Mn2FhFCKubWQ52VZK3iK_8UXF2WtauN5LYzHajLVjrNbznXpBd_gZ4prFye2z3AT69Ys8eMnzRhyELY</p>
+    <p class="performance-test">tZwu2eyFd7Dz3Gpy6pKBKwQLwGfymQDaYaW5_aDK8HuAFBrBr7whb6YYQunzwibdNkDLGBr49UGQrcNyGU9NzCXhJatXMuz7PbWi</p>
+    <p class="performance-test">JuyUUjr5ZjfSejwsaiVPYzBckat7zj5rcsyucByJtCAfxwcjhKUrYu6xSKUP7Bn647VWnHN7VtkgTGdaAxyz4kuiMUeFyWYY6idX</p>
+    <p class="performance-test">cMbuzbZCta2jrw2Gf7FbUaa8WsSgSjFskjC2UPnBz2zBzKYgr3xNaf5yEZCEePHEkQcyQ_EjQ3ZapTEhz7TQh6rJ7ByiAEinsQfa</p>
+    <p class="performance-test">zPGZ5F9rFsJcBbU9SAD3_XcuSPhMzwUNpbMKV9zRNsyExNDXgexjMnE5xTZ5hF9hFn3RXsDFuVfjCEeadyFreVTj9LcQb5PT5pMz</p>
+    <p class="performance-test">RBZMkL5ZrSgLNRjgLU6bCNCtKnRWrVUSVMbkpDicCPAcfpVKCL5iBieVVsr2Zw4fBMyGH24stHcgCMp_HcpJ8GtMiZukRwQku9eH</p>
+    <p class="performance-test">Sd54BWgtrecsBFXswh6wRQ8JZ9WneTNPVYEb4YxYPWRVU4XDFyW_3yewzt7LYHsmFuJ8C3JxzA8KiRrxuEAcTnkbHy7gAMfpEfCZ</p>
+    <p class="performance-test">Dn9mm8g5VDj3EcwMn2fkDeDzAcW7BEmhYBGkg9yQ_zYfzWp5se_Cfx34RWiphFDPAT388SpbVJ4nJS37EyEsZf9eSeNwfW3WWXsj</p>
+    <p class="performance-test">n7KCye4HdUZRgNSQaxPERQcmyQ8SrNK_SJnHQ8nYDMdpiFSGHiAGpyN_jtXVrGLCNdAwT5GSXkwMCbWgg39u9rwJ3e6Qhz9fNFTN</p>
+    <p class="performance-test">64MKeipBX6gmM5LFGHrVM_d6afnLkEWBQEaBUgpsz8neffFXHWFawpkgBruK6SXNpdYdVcyb_s4y9KhJi89Az_yH25GAjzy3J3cJ</p>
+    <p class="performance-test">LdZUKM3856xtBXXsSf4uZGHsUACAZQTW2XsFNy9tPhMan7KxwihptusgSkLBnRauXUe8b7heU45C9DteRNbeANP2xrgiKTuKHFjU</p>
+    <p class="performance-test">BFJtnA6ucjdZm7XjAw_LFZ2E2UE9c43DuncJcWWA7iAnF7Kdk6PgGRHAYTWK4Zz3PeFYLUaLbuLjiuwiYghg9x9cwSfS3xss8XwC</p>
+    <p class="performance-test">4gmSigxk3sHpVyC9eKZseB7djnCwjLtQ4PXC2cRAsnkBd86iFYajRaKUNMsc_bbmHnJdrMeWmPGMpRmncw58te8YzFndVPhMV7pd</p>
+    <p class="performance-test">2bVdFdnEjHdC4rfNWk8WSkJz8NaAwm_RVmzapspgJP26Ge9CeMnKhBGfCzhmV5ZEYJ2rUEfeGwcCmmVSxtuK5PSS8gfJWDULxntD</p>
+    <p class="performance-test">QUS9WLSYscEKuyL4M3XyFkeUf8kjSaKekB3QZxD4ZcxumQy5gQH6eNjuXsgAANPLi9ja3yVdxsite5Vb66hPrAfMPrf2a5BfeGR8</p>
+    <p class="performance-test">J_PLRb2JTZTPyBWWcZT8AWsnZc5FM4WDQtTn7VyhVd7wTEL6GP53b4FJdamjAH_TDtMSVsQcKY7m3n4gcuAaKa5Zc_y6R2dabGPK</p>
+    <p class="performance-test">HyV5uyZR69N48e8_raa7UXZPhrW_yDh76meeRJxjFwpR7bmhpznhwFKuEXfXuMRCyLaX8QUtYt2T7dm6wBLZwanJHFjsyynn89GJ</p>
+    <p class="performance-test">HRPhHhF4M9FBRxw3zZSENsGghyfeeebJ93cUyhegFfYBpBzd2TPs2CkraUUMVCCDGEd5GBkaLxEQinVEcLQeC8cbj3GMHNse5h4i</p>
+    <p class="performance-test">VyKNR3sKiR8Knxixgj6L8gnu_mkDZfN4DiPSbVciPzizw7eVDsisFZGjdCwaWnd2m7Fd8RXJ6NMNnmuGuCV_WDihV6sXubQRwkfE</p>
+    <p class="performance-test">RMJHbRDA4kUkkAbP8gsKYLV6Zek8dRWCbgVUX5iBiendU27Mb2s9R72uW2ScPEfVCdk8zbezuMhTgxVs5PV3CPkzsQjLcT9442R_</p>
+    <p class="performance-test">unV8jkVELaEMNspXhgAbzkD8FAe_65uMNzDjhAu56FUKiBZC9TTPFe4_34P87ZriQtgbPt9i5ji_ubHU43WJH_icRzw_tZppn35Y</p>
+    <p class="performance-test">TahF_mB9jZ2mbPFpu7ag_AWkSQP8_n4HZkaHPcYUMaNxSJwfQ6crfZbRHaipEeHaSTDUjWprDmCffEEdQ6xxWdM3Apf5p3pfVt6F</p>
+    <p class="performance-test">cY_fVEsxFdEKPisUKgQaSVwQS6QUxw2TWLWfBUGWwiSLASiKQsLeiMWVbU_4FP_YsCQrmbxAPPy6gw65NdS_PNLV3sstLyAgXMmN</p>
+    <p class="performance-test">hBGRADBBC7YzZPM8af366bHHF9mbutAgbTHrx73WxXi5WHAp4NbMDz2yXk9kCacFNG_nLs69hUZQ9ULmRUZx2YyQnkbMa2PzZHLe</p>
+    <p class="performance-test">MzWxhcds4r_LRS8bMfuKtPx43fagy9pnrajGWm7uwbj_i5gH4MWskauiGYn9YhUfe2xKdFjX8ba7JJeVuJDdXYbygKrd5wJWFueB</p>
+    <p class="performance-test">KtKpghTYZf42jiMSa6Le7znKgWsBDr9z9BTM899EXNb5gdzGkd9UEY3YY2me_fWRU8FT3AL4NnfbgCPH5pMzf5dEwBDpb_gCSnWQ</p>
+    <p class="performance-test">crpgAxaL7xtwRyY57TBV7PpZnNjLUyYWDHRQQ56d58ZbuS7TVGYSCyTcs5P_f38wb5hcnNV5i2Ja9Wh42Gex2EdG3e3YcTccdNfM</p>
+    <p class="performance-test">4cphkpaP46eW6ySsUV9wjhj8jNfsa5wUxQW98z_53pjiccPQDCGzxspN54NZDDpmj2JbdQZ3FBSYHWa7sMwGm36tQfyRyPFbV6XK</p>
+    <p class="performance-test">3fxhbTLEaefbfdjm7HYBBRKnN4asH4_KsA5n44bGs6f5zc84eBHUTwLF3CiLhzCMSHkWexPVBepbLM3RQ8UAcewWHSuGQBSGRWmS</p>
+    <p class="performance-test">guQeUJT8KRneAKFH4BUnjHXKffriKh3r2cHp2hTWXUxZ96ZQa8ggkG3nSkyK_RXiQ_LEUeL2CxgRUiBPxjVUFbtDJ42LpZXj6wdf</p>
+    <p class="performance-test">ZcdsnkGSjRFytXig9fgykihPRHLsDjwgb4rYka5c455fBeNAJAKsuzybW4bdCsA7_4rrg9BDBCnxT4FckYM5CQNDsfRLxyHQe3fG</p>
+    <p class="performance-test">fa7ACGyNrJRKPfyb_sn_piaTj6s5SLAdGMcL5JbUsP5i3xxp84rtY4RTZRMbsnPcwE5uGdEK2BhctxDpj3dt_CPGWPyZR8Q4VV5t</p>
+    <p class="performance-test">k4CaVp7A2WTemA7gBNwc2LZYmMkwgcjiYDz7kP2jVxabVU5wZiKptiXTdTBpmafy7PKwJAKEcUwzRfTVGdHBcSEZzsLS6WCc3ARX</p>
+    <p class="performance-test">7sC39JkdM2RuSgP7eyfARfUVj7PcSrx55LRfb7AVhsbJZ_yxkdx6bXuUjxQ8MAi95UN_3xfiFT6hH32eTVxGCAdafF8xkQuYbseF</p>
+    <p class="performance-test">37j2dh9h7GNmXFLenTWx_MgbghjZnkMcP82ZhcPjr7jdz5BTpak2dEKEPRsa_KRjhdTmHn4B_HAYdtGVwT5ksd5rPcfCGBcfMD8n</p>
+    <p class="performance-test">PxREpLc3zsTgWEzYzDrQBXJLwf47rX7ziHh_RLdsdfaAH78ifcEt8gaawScX7m_rkadrWQW_3s6b7e55UWnabfnkufsmdcWeuDtJ</p>
+    <p class="performance-test">B3tdgh5yXzKskUTLVeRz9bB3aECeYKRDaSyRaGn2nyNDi3Q3eFY3nULDKfVUWsBZ2AQsGHY748h3XVYRHQWdxQxVXuZPMmzX_BJu</p>
+    <p class="performance-test">kxMuLnbGN3Fj8ibbaUZbdHWxuXPGFUkrAd_RYprSWT66MhziyWbCEKhTgHdYcufhMSF7s6yiSCDymn_TerTfBCcB5gaN2Hnw9dU_</p>
+    <p class="performance-test">CdSZ6uPpwtT8rD2RFCx69FizsKufbcMUmNhpGXsmP2EdE7ybQ5xyW6FdBWVaYHU8z6ypFzawSAbCDcPtQ7DrUYwyHk3p2XejCfTC</p>
+    <p class="performance-test">8cpfzsLdjspZU2L6fVFyz3MeSM5CdUNegDH8dL7hBAs5KWERdtGFCAV6zTZt4HADgYbHsCHPUss6L3J9RSnYgttBzjszfd76WBTG</p>
+    <p class="performance-test">kCZx_XASxL5biVbMRzQMCZgwt2Fz98M4LHXWipxhFQZM7rTMtw3Q5ZyzasKxjBMcK3LAZ2GXKksmp4cbScG2dxGpNbXJyUKu5hAe</p>
+    <p class="performance-test">735dMxgypCUKde_p2dKK_jW6whWm4dLBiTsxBnhHRPwpDmjxLf7Xx2sBmeSfjpQKEQ9EWwX2xpt5FTEXhM6McTcfzhxTYb6cQMeB</p>
+</body>
+</html>
