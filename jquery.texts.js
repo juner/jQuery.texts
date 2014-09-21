@@ -15,8 +15,8 @@
         className:"char",
         tagName:"span",
         excludeTagNames:["select","option","textarea","ol","ul","dl"],
-        splitReg :/([\uD800-\uDBFF][\uDC00-\uDFFF]|[\B\t\s 　\u200B-\u200F]+|.)/g,
-        testReg : /[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\B\t\s 　\u0323\u200B-\u200F]/,
+        splitReg :/([\uD800-\uDBFF][\uDC00-\uDFFF]|[\u2000-\u200F\B\t\s 　]+|.)/g,
+        testReg : /[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\u2000-\u200F\B\t\s 　\u0323]/,
     };
     // 古いバージョンの jquery 対策 (1.8以下)
     var addBack = typeof $.fn.addBack === "function" ? "addBack" : "andSelf";
@@ -33,10 +33,12 @@
             });
         },
         cloneElement:function(elm,newText){
-            return $(elm).clone().text((newText || "")).get(0);
+            var newElem = elm.cloneNode();
+            newElem.appendChild(document.createTextNode(newText || ""));
+            return newElem;
         },
         newTextNode:function(context){
-            return document.createTextNode(context);
+            return document.createTextNode(context || "");
         },
     };
     //公開用関数群
