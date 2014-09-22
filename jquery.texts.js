@@ -33,12 +33,33 @@
             });
         },
         cloneElement:function(elm,newText){
-            var newElem = elm.cloneNode();
+            var newElem = elm.cloneNode(false);
             newElem.appendChild(document.createTextNode(newText || ""));
             return newElem;
         },
         newTextNode:function(context){
             return document.createTextNode(context || "");
+        },
+        textNodeToWrapTextNode:function(tempElem,options){
+            options = options || methods.getOptions();
+            return function(){
+                var textNode = this;
+                var parentNode = textNode.parentNode;
+                var text =this.nodeValue;
+                var fragments= document.createDocumentFragment ? document.createDocumentFragment():null;
+                text.replace(options.splitReg,function(matches,$1,offset,str){
+                    var newNode = ($1 && options.testReg.test($1))
+                        ? private_methods.cloneElement(tempElem,$1)
+                        : private_methods.newTextNode($1);
+                    if(fragments)
+                        fragments.appendChild(newNode);
+                    else
+                        parentNode.insertBefore(newNode,textNode);
+                });
+                if(fragments)
+                    parentNode.insertBefore(fragments,textNode);
+                $(this).remove();
+            }
         },
     };
     //公開用関数群
@@ -49,27 +70,32 @@
         setOptions:function(options){
             return default_options = $.extend(default_options,options);
         },
-        getTexts:function(elm,options){
+        getTextsTargetTextNode:function(elm,options){
             options = options || methods.getOptions();
-            var tempElem = $.parseHTML("<"+options.tagName+" class='"+options.className+"'></"+options.tagName+">")[0];
             var $elm = $(elm);
             $elm = private_methods.textsTargetElement.call($elm,options);
             $elm = private_methods.notZeroLengthTextNode.call($elm);
-            $elm.each(function(){
-                    var textNode = this;
-                    var text =this.nodeValue;
-                    text.replace(options.splitReg,function(matches,$1,offset,str){
-                        var newNode = ($1 && options.testReg.test($1))
-                            ? private_methods.cloneElement(tempElem,$1)
-                            : private_methods.newTextNode($1);
-                        textNode.parentNode.insertBefore(
-                            newNode,textNode);
-                    });
-                    $(this).remove();
-                });
-            return elm
+            return $elm;
+        },
+        convertTextsWrapTextNode:function(elm,options){
+            options = options || methods.getOptions();
+            var $elm = $(elm);
+            var tempElem = $.parseHTML("<"+options.tagName+" class='"+options.className+"'></"+options.tagName+">")[0];
+            return $elm.each(private_methods.textNodeToWrapTextNode(tempElem,options));
+        },
+        findAndRemoveClassOfWrapTextNode : function(elm,options){
+            options = options || methods.getOptions();
+            var $elm = $(elm);
+            return $elm
                 .find(""+options.tagName+"."+options.className+"")
-                .removeAttr("class");   
+                .removeClass(options.className);
+        },
+        getTexts:function(elm,options){
+            options = options || methods.getOptions();
+            var $elm = $(elm);
+            $elm = methods.getTextsTargetTextNode($elm,options);
+            $elm = methods.convertTextsWrapTextNode($elm,options);
+            return methods.findAndRemoveClassOfWrapTextNode($elm,options);
         }
     };
     $.fn.extend({
