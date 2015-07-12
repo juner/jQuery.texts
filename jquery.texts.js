@@ -1,4 +1,4 @@
-(function($,document,undefined){
+;(function ($,document,undefined){
     "use strict";
     if($ === undefined){
         throw "not found jQuery";
@@ -22,6 +22,11 @@
     var addBack = typeof $.fn.addBack === "function" ? "addBack" : "andSelf";
     // 公開しない関数
     var private_methods ={
+		eachAsync:function(action){
+			for(var i =0,imax=this.length;i<imax;i++){
+			
+			}
+		},
         textsTargetElement:function(options){
             options = options || methods.getOptions();
             var excludeTagNames = options.excludeTagNames.join(',');
@@ -42,23 +47,27 @@
         },
         textNodeToWrapTextNode:function(tempElem,options){
             options = options || methods.getOptions();
-            return function(){
+            return function(index,node){
                 var textNode = this;
                 var parentNode = textNode.parentNode;
                 var text =this.nodeValue;
                 var fragments= document.createDocumentFragment ? document.createDocumentFragment():null;
+				var nodes = [];
                 text.replace(options.splitReg,function(matches,$1,offset,str){
-                    var newNode = ($1 && options.testReg.test($1))
+					var newNode = ($1 && options.testReg.test($1))
                         ? private_methods.cloneElement(tempElem,$1)
                         : private_methods.newTextNode($1);
-                    if(fragments)
+                    if(fragments){
                         fragments.appendChild(newNode);
-                    else
+					}else{
                         parentNode.insertBefore(newNode,textNode);
+					}
+					nodes.push(newNode);
                 });
                 if(fragments)
                     parentNode.insertBefore(fragments,textNode);
                 $(this).remove();
+				return nodes;
             }
         }
     };
@@ -80,22 +89,22 @@
         convertTextsWrapTextNode:function(elm,options){
             options = options || methods.getOptions();
             var $elm = $(elm);
-            var tempElem = $.parseHTML("<"+options.tagName+" class='"+options.className+"'></"+options.tagName+">")[0];
-            return $elm.each(private_methods.textNodeToWrapTextNode(tempElem,options));
+            var tempElem = $($.parseHTML("<"+options.tagName+"/>")).addClass(options.className).get(0);
+            return $elm.map(private_methods.textNodeToWrapTextNode(tempElem,options));
         },
         findAndRemoveClassOfWrapTextNode : function(elm,options){
             options = options || methods.getOptions();
             var $elm = $(elm);
-            return $elm
-                .find(""+options.tagName+"."+options.className+"")
-                .removeClass(options.className);
+			$elm = $elm.removeClass(options.className);
+			return $elm;
         },
         getTexts:function(elm,options){
             options = options || methods.getOptions();
             var $elm = $(elm);
             $elm = methods.getTextsTargetTextNode($elm,options);
             $elm = methods.convertTextsWrapTextNode($elm,options);
-            return methods.findAndRemoveClassOfWrapTextNode($elm,options);
+            $elm = methods.findAndRemoveClassOfWrapTextNode($elm,options);
+			return $elm;
         }
     };
     $.fn.extend({
