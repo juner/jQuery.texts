@@ -15,8 +15,8 @@
         className:"char",
         tagName:"span",
         excludeTagNames:["select","option","textarea","ol","ul","dl"],
-        splitReg :/([\uD800-\uDBFF][\uDC00-\uDFFF]|[\u2000-\u200F\B\t\s 　]+|.)/g,
-        testReg : /[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\u2000-\u200F\B\t\s 　\u0323]/
+        splitReg :/([\uD800-\uDBFF][\uDC00-\uDFFF]|[\u2000-\u200F\t\s 　]+|.)/g,
+        testReg : /[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\u2000-\u200F\t\s 　\u0323]/
     };
     // 古いバージョンの jquery 対策 (1.8以下)
     var addBack = typeof $.fn.addBack === "function" ? "addBack" : "andSelf";
