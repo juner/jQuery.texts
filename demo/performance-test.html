@@ -2,19 +2,27 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>jQuery.texts() DEMO</title>
+<title>jQuery.texts() Performance test</title>
 <link rel="stylesheet" type="text/css" media="screen,print" href="default.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="../jquery.texts.js"></script>
+<style>
+	.performance-test span{
+		background-color:palegreen;
+		margin:1px;
+	}
+</style>
 <script type="text/javascript">
 jQuery(function($){
     var $performanceTest = $(".performance-test");
-    var length = $performanceTest.text().length;
+    var textlength = $performanceTest.text().length;
     var startTime = new Date().getTime();
-    $performanceTest.texts();
+    var texts = $performanceTest.texts();
+	console.log(texts);
+	var textslength = texts.length;
     var endTime = new Date().getTime();
     var status = endTime - startTime;
-    $("h1").eq(0).after($("<div class='result' />").text(status+" ms"+" / "+length + " chars"));
+    $("h1").eq(0).after($("<div class='result' />").text(status+" ms"+" / "+textlength + " chars to texts (" + textslength + ")"));
 });
 </script>
 </head>
