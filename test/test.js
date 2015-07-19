@@ -1,9 +1,9 @@
 ;(function($,$Q,undefined){
     "use strict";
-	$Q.test("jQuery.texts API define check.",8,function(assert){
+	$Q.test("jQuery.texts API define check.",7,function(assert){
 		assert.ok("texts" in $,"jQuery.texts is define.");
 		assert.ok($.isFunction($.fn["texts"]),
-				  "jQuery.fn.texts is define.");
+				  "jQuery.fn.texts is de fine.");
 		assert.ok($.isFunction($.texts.getOptions),
 				  "jQuery.texts.getOptions is define.");
 		assert.ok($.isFunction($.texts.setOptions),
@@ -12,8 +12,7 @@
 				 "jQuery.texts.getTextsTargetTextNode is define.");
 		assert.ok($.isFunction($.texts.convertTextsWrapTextNode),
 				 "jQuery.texts.convertTextsWrapTextNode is define.");
-		assert.ok($.isFunction($.texts.findAndRemoveClassOfWrapTextNode),
-				 "jQuery.texts.findAndRemoveClassOfWrapTextNode is define.");
+
 		assert.ok($.isFunction($.texts.getTexts),
 				  "jQuery.texts.getTexts is define.");
 	});

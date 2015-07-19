@@ -92,18 +92,12 @@
             var tempElem = $($.parseHTML("<"+options.tagName+"/>")).addClass(options.className).get(0);
             return $elm.map(private_methods.textNodeToWrapTextNode(tempElem,options));
         },
-        findAndRemoveClassOfWrapTextNode : function(elm,options){
-            options = options || methods.getOptions();
-            var $elm = $(elm);
-			$elm = $elm.removeClass(options.className);
-			return $elm;
-        },
         getTexts:function(elm,options){
             options = options || methods.getOptions();
             var $elm = $(elm);
             $elm = methods.getTextsTargetTextNode($elm,options);
             $elm = methods.convertTextsWrapTextNode($elm,options);
-            $elm = methods.findAndRemoveClassOfWrapTextNode($elm,options);
+			$elm = $elm.filter("*");
 			return $elm;
         }
     };
