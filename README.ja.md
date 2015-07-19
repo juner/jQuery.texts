@@ -9,4 +9,21 @@ jQueryのあとに読み込んで一文字ずつ取得したいところで以�
 
 尚、このプラグインはサロゲートペアに対応している為、絵文字も対応しています。
 
+##用例
+例えば、次の様な要素があったとします。
+
+    <div id="test">TEST </div>
+	
+これに jQuery.texts を適用する場合以下の様にします。
+
+    var $texts = $("#test").texts();
+
+これにより、元の要素は以下の様になります。
+
+    <div id="target"><span>T</span><span>E</span><span>S</span><span>T</span> </div>
+
+また、これにより `$texts` には次の様なjQuery配列が入ります。
+
+    [<span>T</span>,<span>E</span>,<span>S</span>,<span>T</span>];
+    
 [en]: README.md "README(en)"
