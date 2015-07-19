@@ -7,29 +7,34 @@
      * jQuery().texts(options)
      * @param options[className] 設定する一時クラス名(初期値:"char")
      * @param options[tagName] 設定するタグ名(初期値:"span")
-     * @param options[excludeTagNames] 除外セレクタ[主に除外するタグ名を指定する](初期値:select,option,textarea)
+     * @param options[excludeSelectors] 除外セレクタ[主に除外するタグ名を指定する](初期値:select,option,textarea,ol,ul,dl)
      * @param options[splitReg] 抽出用正規表現オブジェクト
      * @param options[testReg] 囲う一文字を判別する為の正規表現オブジェクト(初期値:/([\uD800-\uDBFF][\uDC00-\uDFFF]|[^\B\t\s ])/g)
      */
     var default_options = {
+		template:function(){ return $.parseHTML("<span/>")[0];},
         className:"char",
         tagName:"span",
-        excludeTagNames:["select","option","textarea","ol","ul","dl"],
+        excludeSelectors:["select","option","textarea","ol","ul","dl"],
         splitReg :/([\uD800-\uDBFF][\uDC00-\uDFFF]|[\u2000-\u200F\t\s 　]+|.)/g,
         testReg : /[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\u2000-\u200F\t\s 　\u0323]/
     };
     // 古いバージョンの jquery 対策 (1.8以下)
     var addBack = typeof $.fn.addBack === "function" ? "addBack" : "andSelf";
-    // 公開しない関数
     var private_methods ={
-		eachAsync:function(action){
-			for(var i =0,imax=this.length;i<imax;i++){
-			
+		getTemplate:function(options){
+			options = options || methods.getOptions();
+			if($.isFunction(options.template)){
+				return options.template();
+			}else if(typeof options.template == "string"){
+				return $.parseHTML(options.template)[0];
+			}else{
+				throw new Error("unkown type template.");
 			}
 		},
         textsTargetElement:function(options){
             options = options || methods.getOptions();
-            var excludeTagNames = options.excludeTagNames.join(',');
+            var excludeTagNames = options.excludeSelectors.join(',');
             return $(this).find("*")[addBack]().not(excludeTagNames);
         },
         notZeroLengthTextNode:function(){
@@ -71,10 +76,9 @@
             }
         }
     };
-    //公開用関数群
     var methods = {
         getOptions:function(config){
-            return $.extend(default_options,config);
+            return $.extend({},default_options,config);
         },
         setOptions:function(options){
             return default_options = $.extend(default_options,options);
@@ -89,7 +93,7 @@
         convertTextsWrapTextNode:function(elm,options){
             options = options || methods.getOptions();
             var $elm = $(elm);
-            var tempElem = $($.parseHTML("<"+options.tagName+"/>")).addClass(options.className).get(0);
+            var tempElem = private_methods.getTemplate(options);
             return $elm.map(private_methods.textNodeToWrapTextNode(tempElem,options));
         },
         getTexts:function(elm,options){
