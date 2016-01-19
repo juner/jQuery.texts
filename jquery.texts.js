@@ -12,7 +12,7 @@
      * @param options[testReg] 囲う一文字を判別する為の正規表現オブジェクト(初期値:/([\uD800-\uDBFF][\uDC00-\uDFFF]|[^\B\t\s ])/g)
      */
     var default_options = {
-		template:function(){ return $.parseHTML("<span/>")[0];},
+        template:function(){ return $.parseHTML("<span/>")[0];},
         className:"char",
         tagName:"span",
         excludeSelectors:["select","option","textarea","ol","ul","dl"],
@@ -22,16 +22,16 @@
     // 古いバージョンの jquery 対策 (1.8以下)
     var addBack = typeof $.fn.addBack === "function" ? "addBack" : "andSelf";
     var private_methods ={
-		getTemplate:function(options){
-			options = options || methods.getOptions();
-			if($.isFunction(options.template)){
-				return options.template();
-			}else if(typeof options.template == "string"){
-				return $.parseHTML(options.template)[0];
-			}else{
-				throw new Error("unkown type template.");
-			}
-		},
+        getTemplate:function(options){
+            options = options || methods.getOptions();
+            if($.isFunction(options.template)){
+                return options.template();
+            }else if(typeof options.template == "string"){
+                return $.parseHTML(options.template)[0];
+            }else{
+                throw new Error("unkown type template.");
+            }
+        },
         textsTargetElement:function(options){
             options = options || methods.getOptions();
             var excludeTagNames = options.excludeSelectors.join(',');
@@ -57,22 +57,22 @@
                 var parentNode = textNode.parentNode;
                 var text =this.nodeValue;
                 var fragments= document.createDocumentFragment ? document.createDocumentFragment():null;
-				var nodes = [];
+                var nodes = [];
                 text.replace(options.splitReg,function(matches,$1,offset,str){
-					var newNode = ($1 && options.testReg.test($1))
+                    var newNode = ($1 && options.testReg.test($1))
                         ? private_methods.cloneElement(tempElem,$1)
                         : private_methods.newTextNode($1);
                     if(fragments){
                         fragments.appendChild(newNode);
-					}else{
+                    }else{
                         parentNode.insertBefore(newNode,textNode);
-					}
-					nodes.push(newNode);
+                    }
+                    nodes.push(newNode);
                 });
                 if(fragments)
                     parentNode.insertBefore(fragments,textNode);
                 $(this).remove();
-				return nodes;
+                return nodes;
             }
         }
     };
@@ -101,8 +101,8 @@
             var $elm = $(elm);
             $elm = methods.getTextsTargetTextNode($elm,options);
             $elm = methods.convertTextsWrapTextNode($elm,options);
-			$elm = $elm.filter("*");
-			return $elm;
+            $elm = $elm.filter("*");
+            return $elm;
         }
     };
     $.fn.extend({

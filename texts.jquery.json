@@ -1,9 +1,10 @@
 {
     "name": "texts",
     "title": "jQuery.texts",
-    "description": "jQuery.fn.texts is get unicode character wrap span.",
+    "description": "jQuery.texts is a plug-in order to wrap in the Element one character the TextNode.",
     "keywords": [
         "unicode",
+		"character",
         "textNode",
         "nodeType"
     ],
