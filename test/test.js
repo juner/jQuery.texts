@@ -36,5 +36,6 @@
 		$target.text(message);
 		var $texts = $target.texts();
 		assert.equal($texts.length,message.length,"$elm.texts() でちゃんと小分けになって取得できているか");
+        assert.deepEqual($texts.end().get(),$target.get(),".texts().end() is prev element.");
 	});
 })(jQuery,QUnit);

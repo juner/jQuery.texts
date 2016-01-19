@@ -107,7 +107,7 @@
     };
     $.fn.extend({
         texts:function(config){
-            return methods.getTexts(this,methods.getOptions(config));
+            return $(this).pushStack(methods.getTexts(this,methods.getOptions(config)));
         }
     });
     $.extend({
