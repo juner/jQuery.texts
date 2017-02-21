@@ -28,8 +28,8 @@
 			assert.equal($texts.length,4);
 		});
 		$Q.module("exclude space charactor.",function(hooks){
-			$Q.test("t e s t -> get 4 elements.",function(assert){
-				var $test = $($span).clone().text("t e s t ").appendTo($("#target"));
+			$Q.test("t e s\tt -> get 4 elements.",function(assert){
+				var $test = $($span).clone().text("t e s\tt ").appendTo($("#target"));
 				var $texts = $test.texts();
 				assert.equal($texts.length,4);
 			});
@@ -42,7 +42,7 @@
 			});
 		});
 		$Q.module("regature charactor unsupport.",function(assert){
-			$Q.test("A\u20E0秘\u20E3</span> -> get 4 elements",function(assert){
+			$Q.test("A\u20E0秘\u20E3 -> get 4 elements",function(assert){
 				var $test = $($span).clone().text("A\u20E0秘\u20E3").appendTo($("#target"));
 				var $texts = $test.texts();
 				assert.equal($texts.length,4);
