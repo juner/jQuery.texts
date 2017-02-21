@@ -3,14 +3,6 @@
     if($ === undefined){
         throw "not found jQuery";
     }
-    /**
-     * jQuery().texts(options)
-     * @param options[className] 設定する一時クラス名(初期値:"char")
-     * @param options[tagName] 設定するタグ名(初期値:"span")
-     * @param options[excludeSelectors] 除外セレクタ[主に除外するタグ名を指定する](初期値:select,option,textarea,ol,ul,dl)
-     * @param options[splitReg] 抽出用正規表現オブジェクト
-     * @param options[testReg] 囲う一文字を判別する為の正規表現オブジェクト(初期値:/([\uD800-\uDBFF][\uDC00-\uDFFF]|[^\B\t\s ])/g)
-     */
     var default_options = {
         template:function(){ return $.parseHTML("<span/>")[0];},
         className:"char",
@@ -105,10 +97,19 @@
             return $elm;
         }
     };
-    $.fn.extend({
-        texts:function(config){
-            return $(this).pushStack(methods.getTexts(this,methods.getOptions(config)));
-        }
+    /**
+     * jQuery().texts(config)
+     * @param config[className] 設定する一時クラス名(初期値:"char")
+     * @param config[tagName] 設定するタグ名(初期値:"span")
+     * @param config[excludeSelectors] 除外セレクタ[主に除外するタグ名を指定する](初期値:select,option,textarea,ol,ul,dl)
+     * @param config[splitReg] 抽出用正規表現オブジェクト
+     * @param config[testReg] 囲う一文字を判別する為の正規表現オブジェクト(初期値:/([\uD800-\uDBFF][\uDC00-\uDFFF]|[^\B\t\s ])/g)
+     */
+    function texts(config){
+        return $(this).pushStack(methods.getTexts(this,methods.getOptions(config)));
+    }
+    $.fn.extend({ 
+        texts:texts
     });
     $.extend({
         texts:methods

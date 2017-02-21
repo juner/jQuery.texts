@@ -15,7 +15,6 @@
 			"getTexts"
 		].forEach(function(value,index){
 			$Q.test("jQuery.texts." + value + " is function.",function(assert){
-				assert.ok(value in $.texts);
 				assert.ok($.isFunction($.texts[value]));
 			})
 		});
