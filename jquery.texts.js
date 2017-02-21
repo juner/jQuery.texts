@@ -8,8 +8,8 @@
         className:"char",
         tagName:"span",
         excludeSelectors:["select","option","textarea","ol","ul","dl"],
-        splitReg :/([\uD800-\uDBFF][\uDC00-\uDFDFF\uFE10-\uFFFF][\uFE00-\uFE0F]?|[\u2000-\u200F\t\s 　]+|.[\uFE00-\uFE0F]?)/g,
-        testReg : /[\uD800-\uDBFF][\uDC00-\uDFFF\uFE10-\uFFFF][\uFE00-\uFE0F]?|[^\u2000-\u200F\t\s 　\u0323][\uFE00-\uFE0F]?/
+        splitReg :/([\uD800-\uDBFF][\uDC00-\uDFFF\uFE10-\uFFFF]([\u180B-\u180D\uFE00-\uFE0F]|[\uDB40][\uDD00-\uDDEF])?|[\u2000-\u200F\t\s 　]+|.([\u180B-\u180D\uFE00-\uFE0F]|[\uDB40][\uDD00-\uDDEF])?)/g,
+        testReg : /[\uD800-\uDBFF][\uDC00-\uDFFF\uFE10-\uFFFF]([\u180B-\u180D\uFE00-\uFE0F]|[\uDB40][\uDD00-\uDDEF])?|[^\u2000-\u200F\t\s 　\u0323]([\u180B-\u180D\uFE00-\uFE0F]|[\uDB40][\uDD00-\uDDEF])?/
     };
     // 古いバージョンの jquery 対策 (1.8以下)
     var addBack = typeof $.fn.addBack === "function" ? "addBack" : "andSelf";
@@ -49,7 +49,6 @@
             var text =this.nodeValue;
             var fragments= document.createDocumentFragment ? document.createDocumentFragment():null;
             var nodes = [];
-            console.log("textNode: "+ textNode +"origin: " + text);
             text.replace(options.splitReg,function(matches,$1,offset,str){
                 var newNode = ($1 && options.testReg.test($1))
                     ? callback($1)
@@ -63,7 +62,6 @@
             return function(index,node){
                 var nodes = [];
                 private_methods.splitTextNode.call(this,function(text){
-                    console.log("split: "+text+"(\\u"+text.charCodeAt(0).toString(16)+")");
                     var $newNode = private_methods.cloneElement(tempElem,text);
                     nodes.push($newNode);
                     return $newNode;
