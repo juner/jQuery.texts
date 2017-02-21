@@ -15,20 +15,39 @@
 			"getTexts"
 		].forEach(function(value,index){
 			$Q.test("jQuery.texts." + value + " is function.",function(assert){
+				assert.ok(value in $.texts);
 				assert.ok($.isFunction($.texts[value]));
 			})
 		});
 	});
 	$Q.module("simple use", function(hooks){
-		$Q.test("$(<span>test</span>).texts() -> get 4 elements.",function(assert){
-			var $test = $("<span>test</span>").appendTo($("#target"));
+		var $span = $.parseHTML("<span></span>");
+		$Q.test("test -> get 4 elements.",function(assert){
+			var $test = $($span).clone().text("test").appendTo($("#target"));
 			var $texts = $test.texts();
-			assert.equal($texts.length,4,"$(<span>test</span>).texts() -> get 4 elements.");
+			assert.equal($texts.length,4);
 		});
-		$Q.test("$(<span>t e s t </span>).texts() -> get 4 elements.",function(assert){
-			var $test = $("<span>t e s t</span>").appendTo($("#target"));
-			var $texts = $test.texts();
-			assert.equal($texts.length,4,"$(<span>t e s t </span>).texts() -> get 4 elements.");
+		$Q.module("exclude space charactor.",function(hooks){
+			$Q.test("t e s t -> get 4 elements.",function(assert){
+				var $test = $($span).clone().text("t e s t ").appendTo($("#target"));
+				var $texts = $test.texts();
+				assert.equal($texts.length,4);
+			});
+		});
+		$Q.module("surrogate pair support.",function(assert){
+			$Q.test("\uD867\uDE3D -> get 1 elements",function(assert){
+				var $test = $($span).clone().text("\uD867\uDE3D").appendTo($("#target"));
+				var $texts = $test.texts();
+				assert.equal($texts.length,1);
+			});
+		});
+		$Q.module("regature charactor unsupport.",function(assert){
+			$Q.test("A\u20E0秘\u20E3</span> -> get 4 elements",function(assert){
+				var $test = $($span).clone().text("A\u20E0秘\u20E3").appendTo($("#target"));
+				var $texts = $test.texts();
+				assert.equal($texts.length,4);
+			});
+		});
 		});
 	});
 })(jQuery,QUnit);
