@@ -1,0 +1,31 @@
+{
+  "name": "jquery.texts",
+  "version": "1.0.0",
+  "description": "jquerys elements split charactors.",
+  "main": "jquery.texts.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/testem"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juner/jQuery.texts.git"
+  },
+  "keywords": [
+    "jquery",
+    "unicode",
+    "charactor"
+  ],
+  "author": "juner@juner.net",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juner/jQuery.texts/issues"
+  },
+  "homepage": "https://github.com/juner/jQuery.texts#readme",
+  "devDependencies": {
+    "qunitjs": "^2.1.1",
+    "testem": "^1.15.0"
+  }
+}
