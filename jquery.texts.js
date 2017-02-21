@@ -1,15 +1,15 @@
 ;(function ($,document,undefined){
     "use strict";
     if($ === undefined){
-        throw "not found jQuery";
+        throw new Error("not found jQuery");
     }
     var default_options = {
         template:function(){ return $.parseHTML("<span/>")[0];},
         className:"char",
         tagName:"span",
         excludeSelectors:["select","option","textarea","ol","ul","dl"],
-        splitReg :/([\uD800-\uDBFF][\uDC00-\uDFFF]|[\u2000-\u200F\t\s 　]+|.)/g,
-        testReg : /[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\u2000-\u200F\t\s 　\u0323]/
+        splitReg :/([\uD800-\uDBFF][\uDC00-\uDFDFF\uFE10-\uFFFF][\uFE00-\uFE0F]?|[\u2000-\u200F\t\s 　]+|.[\uFE00-\uFE0F]?)/g,
+        testReg : /[\uD800-\uDBFF][\uDC00-\uDFFF\uFE10-\uFFFF][\uFE00-\uFE0F]?|[^\u2000-\u200F\t\s 　\u0323][\uFE00-\uFE0F]?/
     };
     // 古いバージョンの jquery 対策 (1.8以下)
     var addBack = typeof $.fn.addBack === "function" ? "addBack" : "andSelf";
@@ -42,33 +42,46 @@
         newTextNode:function(context){
             return document.createTextNode(context || "");
         },
+        splitTextNode:function(callback,options){
+            callback = callback || private_methods.newTextNode;
+            var textNode = this;
+            var parentNode = textNode.parentNode;
+            var text =this.nodeValue;
+            var fragments= document.createDocumentFragment ? document.createDocumentFragment():null;
+            var nodes = [];
+            console.log("textNode: "+ textNode +"origin: " + text);
+            text.replace(options.splitReg,function(matches,$1,offset,str){
+                var newNode = ($1 && options.testReg.test($1))
+                    ? callback($1)
+                    : private_methods.newTextNode($1);
+                fragments.appendChild(newNode);
+            });
+            parentNode.insertBefore(fragments,textNode);
+            $(this).remove();
+        },
         textNodeToWrapTextNode:function(tempElem,options){
-            options = options || methods.getOptions();
             return function(index,node){
-                var textNode = this;
-                var parentNode = textNode.parentNode;
-                var text =this.nodeValue;
-                var fragments= document.createDocumentFragment ? document.createDocumentFragment():null;
                 var nodes = [];
-                text.replace(options.splitReg,function(matches,$1,offset,str){
-                    var newNode = ($1 && options.testReg.test($1))
-                        ? private_methods.cloneElement(tempElem,$1)
-                        : private_methods.newTextNode($1);
-                    if(fragments){
-                        fragments.appendChild(newNode);
-                    }else{
-                        parentNode.insertBefore(newNode,textNode);
-                    }
-                    nodes.push(newNode);
-                });
-                if(fragments)
-                    parentNode.insertBefore(fragments,textNode);
-                $(this).remove();
+                private_methods.splitTextNode.call(this,function(text){
+                    console.log("split: "+text+"(\\u"+text.charCodeAt(0).toString(16)+")");
+                    var $newNode = private_methods.cloneElement(tempElem,text);
+                    nodes.push($newNode);
+                    return $newNode;
+                },options);
                 return nodes;
             }
         }
     };
+    /**
+     * @global
+     * @memberOf jQuery
+     * @namespace jQuery.texts
+     */
     var methods = {
+        /**
+         * 
+         * @memberOf jQuery.texts
+         */
         getOptions:function(config){
             return $.extend({},default_options,config);
         },
@@ -98,12 +111,14 @@
         }
     };
     /**
-     * jQuery().texts(config)
-     * @param config[className] 設定する一時クラス名(初期値:"char")
-     * @param config[tagName] 設定するタグ名(初期値:"span")
-     * @param config[excludeSelectors] 除外セレクタ[主に除外するタグ名を指定する](初期値:select,option,textarea,ol,ul,dl)
-     * @param config[splitReg] 抽出用正規表現オブジェクト
-     * @param config[testReg] 囲う一文字を判別する為の正規表現オブジェクト(初期値:/([\uD800-\uDBFF][\uDC00-\uDFFF]|[^\B\t\s ])/g)
+     * jQuery.texts is split textNode charactors and wrap elements.
+     * @global
+     * @memberOf jQuery 
+     * @param {string} config.className - 設定する一時クラス名(初期値:"char")
+     * @param {string} config.tagName - 設定するタグ名(初期値:"span")
+     * @param {string} config.excludeSelectors - 除外セレクタ[主に除外するタグ名を指定する](初期値:select,option,textarea,ol,ul,dl)
+     * @param {string} config.splitReg - 抽出用正規表現オブジェクト
+     * @param {string} config.testReg - 囲う一文字を判別する為の正規表現オブジェクト(初期値:/([\uD800-\uDBFF][\uDC00-\uDFFF]|[^\B\t\s ])/g)
      */
     function texts(config){
         return $(this).pushStack(methods.getTexts(this,methods.getOptions(config)));

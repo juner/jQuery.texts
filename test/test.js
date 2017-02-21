@@ -48,6 +48,12 @@
 				assert.equal($texts.length,4);
 			});
 		});
+		$Q.module("variation selector support.",function(){
+			$Q.test("\u2668\ufe0e\u24c2\ufe0f -> get 2 elements",function(assert){
+				var $test = $($span).clone().text("\u2668\ufe0e\u24c2\ufe0f").appendTo($("#target"));
+				var $texts = $test.texts();
+				assert.equal($texts.length,2);
+			});
 		});
 	});
 })(jQuery,QUnit);
