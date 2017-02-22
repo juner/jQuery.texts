@@ -8,8 +8,8 @@
         className:"char",
         tagName:"span",
         excludeSelectors:["select","option","textarea","ol","ul","dl"],
-        splitReg :/([\uD800-\uDBFF][\uDC00-\uDFFF\uFE10-\uFFFF]([\u180B-\u180D\uFE00-\uFE0F]|[\uDB40][\uDD00-\uDDEF])?|[\u2000-\u200F\t\s 　]+|.([\u180B-\u180D\uFE00-\uFE0F]|[\uDB40][\uDD00-\uDDEF])?)/g,
-        testReg : /[\uD800-\uDBFF][\uDC00-\uDFFF\uFE10-\uFFFF]([\u180B-\u180D\uFE00-\uFE0F]|[\uDB40][\uDD00-\uDDEF])?|[^\u2000-\u200F\t\s 　\u0323]([\u180B-\u180D\uFE00-\uFE0F]|[\uDB40][\uDD00-\uDDEF])?/
+        splitReg :/([\u2000-\u200F\t\s 　]+|([\uD800-\uDBFF][\uDC00-\uDFFF\uFE10-\uFFFF]|.)([\u180B-\u180D\uFE00-\uFE0F]|[\uDB40][\uDD00-\uDDEF])?)/g,
+        testReg : /([\uD800-\uDBFF][\uDC00-\uDFFF\uFE10-\uFFFF]|[^\u2000-\u200F\t\s 　\u0323])([\u180B-\u180D\uFE00-\uFE0F]|[\uDB40][\uDD00-\uDDEF])?/
     };
     // 古いバージョンの jquery 対策 (1.8以下)
     var addBack = typeof $.fn.addBack === "function" ? "addBack" : "andSelf";
@@ -115,8 +115,8 @@
      * @param {string} config.className - 設定する一時クラス名(初期値:"char")
      * @param {string} config.tagName - 設定するタグ名(初期値:"span")
      * @param {string} config.excludeSelectors - 除外セレクタ[主に除外するタグ名を指定する](初期値:select,option,textarea,ol,ul,dl)
-     * @param {string} config.splitReg - 抽出用正規表現オブジェクト
-     * @param {string} config.testReg - 囲う一文字を判別する為の正規表現オブジェクト(初期値:/([\uD800-\uDBFF][\uDC00-\uDFFF]|[^\B\t\s ])/g)
+     * @param {string} config.splitReg - 抽出用正規表現オブジェクト (初期値: /([\u2000-\u200F\t\s 　]+|([\uD800-\uDBFF][\uDC00-\uDFFF\uFE10-\uFFFF]|.)([\u180B-\u180D\uFE00-\uFE0F]|[\uDB40][\uDD00-\uDDEF])?)/g)
+     * @param {string} config.testReg - 囲う一文字を判別する為の正規表現オブジェクト (初期値: /([\uD800-\uDBFF][\uDC00-\uDFFF\uFE10-\uFFFF]|[^\u2000-\u200F\t\s 　\u0323])([\u180B-\u180D\uFE00-\uFE0F]|[\uDB40][\uDD00-\uDDEF])?/)
      */
     function texts(config){
         return $(this).pushStack(methods.getTexts(this,methods.getOptions(config)));
